@@ -90,6 +90,13 @@ module Tmdb
       search.fetch_response
     end
 
+    #Get the similar tv shows for a specific tv show id.
+    def self.similar(id, conditions={})
+      search = Tmdb::Search.new("/#{self.endpoints[:singular]}/#{self.endpoint_id + id.to_s}/similar")
+      search.filter(conditions)
+      search.fetch
+    end
+
     def self.changes(id=nil, conditions={})
       if id.present?
         search = Tmdb::Search.new("/#{self.endpoints[:singular]}/#{self.endpoint_id + id.to_s}/changes")
