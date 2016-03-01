@@ -34,9 +34,5 @@ module Tmdb
       @@response = hash
     end
 
-    def self.debug_on
-      debug_output $stdout
-    end
-
   end
 end

@@ -69,6 +69,13 @@ module Tmdb
       end
       response = Api.get(@resource, :query => options)
 
+      # rate limit reached
+      if response.code == 429
+        puts "TMDB rate limit reached: waiting 10 seconds"
+        sleep 11
+        response = Api.get(@resource, :query => options)
+      end
+
       original_etag = response.headers.fetch('etag', '')
       etag = original_etag.gsub(/"/, '')
 
