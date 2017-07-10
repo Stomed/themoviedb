@@ -1,7 +1,8 @@
 module Tmdb
   class Api
     include HTTParty
-    base_uri 'http://api.themoviedb.org/3/'
+    # debug_output $stdout
+    base_uri 'https://api.themoviedb.org/3/'
     format :json
     headers 'Accept' => 'application/json'
     headers 'Content-Type' => 'application/json'

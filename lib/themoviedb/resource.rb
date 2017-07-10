@@ -34,8 +34,9 @@ module Tmdb
       end
     end
 
-    def self.search(query)
+    def self.search(query, conditions={})
       search = Tmdb::Search.new
+      search.filter(conditions)
       search.resource("#{self.endpoints[:singular]}")
       search.query(query)
       search.fetch.collect do |result|

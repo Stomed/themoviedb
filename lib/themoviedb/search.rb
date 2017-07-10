@@ -65,7 +65,7 @@ module Tmdb
       if conditions[:external_source]
         options = @params.merge(Api.config.merge({external_source: conditions[:external_source]}))
       else
-        options = @params.merge(Api.config)
+        options = Api.config.merge(@params)
       end
       response = Api.get(@resource, :query => options)
 
@@ -79,7 +79,7 @@ module Tmdb
       original_etag = response.headers.fetch('etag', '')
       etag = original_etag.gsub(/"/, '')
 
-      Api.set_response({'code' => response.code, 'etag' => etag})
+      Api.set_response('code' => response.code, 'etag' => etag)
       return response.to_hash.to_hashugar
     end
   end
